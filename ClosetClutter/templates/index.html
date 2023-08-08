@@ -1,0 +1,348 @@
+{% extends "base_generic.html" %}
+
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+
+<style>
+    .hero p{
+        color: #EF8062;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Pangolin;
+        font-size: 55px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .hero{
+        padding-left: 100px;
+    }
+
+     .numbers{
+        border: 1px solid #000;
+        background: #B8D5DC;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .numbers .col-4 p:first-child{
+        color: #313144;
+        font-family: Poppins;
+        font-size: 44px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .numbers .col-4 p:nth-child(2){
+        color: #313144;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 275;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+
+    .waysToDonate .header p:first-child{
+        color: #323941;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Poppins;
+        font-size: 49px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .waysToDonate .card{
+        border-radius: 44px;
+        border: 1px solid #000;
+        background: rgba(255, 192, 167, 0.50);
+        box-shadow: 0px 4px 5px 4px rgba(217, 103, 79, 0.28);
+    }
+
+    .waysToDonate .card-text{
+        color: #000;
+        text-align: center;
+        font-family: Poppins;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 275;
+        line-height: normal;
+    }
+
+    .waysToDonate .card-body{
+        flex: 0;
+    }
+
+    .waysToDonate .card-title{
+        color: #000;
+        font-family: Comic Sans MS;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .middle{
+        padding-top: 100px;
+    }
+
+    .volunteer h1{
+        color: #000;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-family: Poppins;
+        font-size: 49px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .volunteer p{
+        color: #000;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 275;
+        line-height: normal;
+    }
+
+    .volunteer .card{
+        border-radius: 17px;
+        background: #B8D5DC;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-color{
+        border-radius: 6px;
+        border-right: 1px solid #92BCB5;
+        border-bottom: 1px solid #92BCB5;
+        border-left: 1px solid #92BCB5;
+        background: #92BCB5;
+        box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .volunteer .card-body span{
+        border-radius: 71px;
+        background-color: rgba(120, 171, 197, 0.53);
+        color: #025679;
+        font-family: Poppins;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 275;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .footer .col-5 p{
+        color: #000;
+        font-family: Poppins;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 275;
+        line-height: normal;
+    }
+
+    .footer .col-7 h5{
+        color: #444092;
+        font-family: Comic Sans MS;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .footer .col-7 p{
+      color: #323941;
+        font-family: Poppins;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 275;
+        line-height: normal;
+    }
+
+    .column-gap{
+        column-gap: 15rem;
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-6 d-flex flex-column align-items-start justify-content-center hero">
+                <p>Make someone's <br> life by giving of <br> yours</p>
+                <img src="{% static 'images/Line 2.png' %}" alt="" style="width: 160px; height: 37px;">
+            </div>
+            <div class="col-6 d-flex justify-content-center">
+                <img src="{% static 'images/hero.png' %}" alt="" style="width: 900px; height: 550px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="pt-5">
+    <div class="numbers">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-4 d-inline-flex flex-column justify-content-center align-items-center">
+                    <p>5k+</p>
+                    <p>Individuals hepled</p>
+                </div>
+                <div class="col-4 d-inline-flex flex-column justify-content-center align-items-center">
+                    <p>3k+</p>
+                    <p>Families hepled</p>
+                </div>
+                <div class="col-4 d-inline-flex flex-column justify-content-center align-items-center">
+                    <p>100+</p>
+                    <p>Events Organized</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="my-5 waysToDonate">
+    <div class="container">
+         <div class="row d-flex justify-content-center header">
+            <p class="text-center pt-4">Ways to donate</p>
+            <img src="{% static 'images/Vector.png'%}" alt="" style="width: 700px; height: 35px;">
+         </div>
+        <div class="row mt-5">
+            <div class="col-4 d-flex justify-content-center">
+                <div class="card" style="width: 16rem; height: 394px">
+                  <img src="{% static 'images/non-profit-organization (1) 1.png'%}" class="card-img-top mx-auto mt-4" alt="..."
+                       style="width: 85px; height: 85px;">
+                  <div class="card-body d-inline-flex flex-column justify-content-center align-items-center pt-0 mt-0">
+                      <h5 class="card-title">Charity Organizations</h5>
+                    <p class="card-text mt-3">Your wardrobe holds the power to change lives.
+                        Donating your gently used clothes to those in need is a simple yet impactful way
+                        to make a positive difference in our world. Every piece of clothing you give has
+                        the potential to provide warmth dignity, and hope to individuals and families facing challenges.</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex justify-content-center middle">
+                <div class="card" style="width: 16rem;">
+                  <img src="{% static 'images/clothes 1.png'%}" class="card-img-top mx-auto mt-4" alt="..."
+                       style="width: 70px; height: 70px;">
+                  <div class="card-body d-inline-flex flex-column justify-content-center align-items-center">
+                      <h5 class="card-title">Family and Individuals</h5>
+                    <p class="card-text mt-3">Your clothing has the power to directly touch the lives of families
+                        and individuals facing challenges. Experience the incredible impact of giving by donating
+                        your gently used clothes to those you can personally support. Experience the joy of
+                        giving firsthand as you share your heart through clothing. Connect, inspire, and
+                        create lasting memories through your thoughtful and personal donations.</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex justify-content-center">
+                <div class="card" style="width: 16rem; height: 394px">
+                  <img src="{% static 'images/clothing 1.png'%}" class="card-img-top mx-auto mt-4" alt="..."
+                       style="width: 70px; height: 70px;">
+                  <div class="card-body d-inline-flex flex-column justify-content-center align-items-center">
+                      <h5 class="card-title text-center">Humanitarian Containers</h5>
+                    <p class="card-text mt-3">Contribute to a wave of positive transformation with our humanitarian containers,
+                        providing an effortless avenue for donating gently used clothing. Your generosity fuels the fire of change
+                        and extends a helping hand to those in need. By utilizing our container system, you play a vital role in
+                        uplifting communities and fostering a sense of unity.Join hands with us to ignite a chain reaction of positivity.
+                    </p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!--volunteer-->
+
+<section class="py-5">
+    <div class="container">
+        <div class="volunteer">
+            <h1 class="m-0">Become a volunteer</h1>
+            <p>choose an event where you would like to volunteer.</p>
+            <div class="row d-flex justify-content-end">
+                <p class="text-end">view all </p>
+            </div>
+            <div class="d-flex align-items-start column-gap d-flex justify-content-center">
+
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <span class="badge rounded-pill">Workshop</span>
+                    <p class="card-text pt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-color d-flex w-100 flex-column justify-content-center align-items-center">Join Us</a>
+                  </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <span class="badge rounded-pill">Workshop</span>
+                    <p class="card-text pt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-color d-flex w-100 flex-column justify-content-center align-items-center">Join Us</a>
+                  </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                  <img src="..." class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <span class="badge rounded-pill">Workshop</span>
+                    <p class="card-text pt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-color d-flex w-100 flex-column justify-content-center align-items-center">Join Us</a>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="my-5">
+    <div class="container">
+        <div class="row footer">
+            <div class="col-5">
+                <h5 class="mb-3" id="logo">ClosetClutter</h5>
+                <p class="mb-4">
+                    ClosetClutter is a digital platform for helping <br>
+                people get rid of their
+                closet clutter by <br> donating their clothes to the people in need</p>
+                <div class="d-inline-flex mt-3 gap-3">
+                    <img src="{% static 'images/fb.png'%}">
+                    <img src="{% static 'images/insta.png'%}">
+                    <img src="{% static 'images/twitter.png'%}">
+                </div>
+            </div>
+            <div class="col-7 d-flex justify-content-end">
+                    <div class="d-inline-flex align-items-start grid column-gap-5">
+                    <div class="d-flex flex-column justify-content-center align-items-start ">
+                        <h5 class="pb-3">options to donate</h5>
+                        <div class="d-flex flex-column align-items-start">
+                            <p>charity</p>
+                            <p>directly</p>
+                            <p>containers</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                        <h5>apply for aid</h5>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-start">
+                        <h5 class="pb-3">about us</h5>
+                        <div class="d-flex flex-column align-items-start">
+                            <p>learn about us</p>
+                            <p>volunteer</p>
+                            <p>get notified</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
