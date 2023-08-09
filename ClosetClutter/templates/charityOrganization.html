@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+
+<style>
+  ul div{
+    border-radius: 12px;
+    background: #B8D5DC;
+  }
+
+  .name{
+    color: #000;
+    font-family: Preahvihear;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+  }
+</style>
+
+
+<section class="mt-5">
+  <div class="container ps-5">
+    <h2 class="pt-5">Charity Organizations</h2>
+    <ul class="list-unstyled">
+      {% for charity in charities %}
+        <div class="align-items-center d-flex justify-content-between p-3">
+          <li class="name">{{charity.name}}</li>
+          <a href="{% url 'charityDetails' charity.id %}">
+            <img src="{% static 'images/arrows.png'%}" alt="" style="width: 24px;height: 24px;">
+          </a>
+        </div>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

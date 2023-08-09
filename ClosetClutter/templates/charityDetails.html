@@ -1,0 +1,54 @@
+{% extends "base_generic.html" %}
+
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+
+<style>
+    .details h6{
+        color: #000;
+        font-family: Pangolin;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .details p{
+        color: #000;
+        font-family: Poppins;
+        font-size: 17px;
+        text-transform: lowercase;
+    }
+
+</style>
+
+<section class="mt-5">
+    <div class="container ps-5">
+        <h2 class="pt-5">{{charity.name}}</h2>
+
+        <div class="details pt-2">
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Description:</h6>
+                <p class="d-inline fw-lighter">{{ charity.description }}</p>
+            </div>
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Telephone number:</h6>
+                <p class="d-inline fw-lighter">{{ charity.telephone }}</p>
+            </div>
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Mail:</h6>
+                <p class="d-inline fw-lighter">{{ charity.mail }}</p>
+            </div>
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Location:</h6>
+                <p class="d-inline fw-lighter">{{ charity.location }}</p>
+            </div>
+        </div>
+
+        <button type="button" class="btn navbtn mt-5 p-2 px-5"><i class="bi bi-chevron-left"></i>Back</button>
+    </div>
+</section>
+
+{% endblock %}

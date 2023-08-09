@@ -7,3 +7,6 @@ class CharityOrg(models.Model):
     telephone = models.CharField(max_length=20)
     mail = models.EmailField(max_length=250)
     location = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
