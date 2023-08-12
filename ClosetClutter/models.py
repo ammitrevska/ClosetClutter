@@ -97,3 +97,7 @@ class Event(models.Model):
     place = models.CharField(max_length=50)
     description = models.TextField()
     volunteersJob = models.TextField()
+
+
+
+
