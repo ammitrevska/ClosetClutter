@@ -102,6 +102,3 @@ class Event(models.Model):
 
 
 
-
-
-
