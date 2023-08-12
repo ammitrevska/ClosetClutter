@@ -99,7 +99,6 @@ class Event(models.Model):
     volunteersJob = models.TextField()
     picture = models.ImageField()
 
-#
 
 
 
