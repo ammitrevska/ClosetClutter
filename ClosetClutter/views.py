@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import CharityOrg
+from .models import CharityOrg, Individual
 
 
 # Create your views here.
@@ -17,3 +17,15 @@ def charityDetails(request, charityOrg_id):
     charity = get_object_or_404(CharityOrg, pk=charityOrg_id)
     context = {"charity": charity}
     return render(request, "charityDetails.html", context=context)
+
+
+def individual(request):
+    qs = Individual.objects.all()
+    context = {"individuals": qs}
+    return render(request, "individual.html", context=context)
+
+
+def individualDetails(request, individual_id):
+    individual = get_object_or_404(Individual, pk=individual_id)
+    context = {"individual": individual}
+    return render(request, "individualDetails.html", context=context)

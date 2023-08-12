@@ -57,7 +57,6 @@ class Individual(models.Model):
         ('S', 'S'),
         ('XS', 'XS')
     )
-    isIndividual = models.BooleanField(default=True)
     size = models.CharField(max_length=2, choices=SIZES)
     family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True)
     NOTIFICATION_OPTIONS = (
@@ -97,16 +96,4 @@ class Event(models.Model):
     place = models.CharField(max_length=50)
     description = models.TextField()
     volunteersJob = models.TextField()
-    picture = models.ImageField(null=True,blank=True)
-
-
-
-
-
-
-
-
-
-
-
-
+    picture = models.ImageField(null=True, blank=True)
