@@ -98,6 +98,3 @@ class Event(models.Model):
     description = models.TextField()
     volunteersJob = models.TextField()
 
-
-
-
