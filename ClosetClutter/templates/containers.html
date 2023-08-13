@@ -1,0 +1,147 @@
+{% extends "base_generic.html" %}
+
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+<style>
+    #map-container {
+        display: flex;
+    }
+    #map {
+        flex: 1;
+        height: 500px;
+    }
+    #markerDetails {
+        display: none;
+        flex: 0.5;
+        padding: 20px;
+        border-radius: 0px 29px 29px 0px;
+        background: #B8D5DC;
+        position: relative; /* Add position relative */
+    }
+    #markerImage {
+        height: 220px;
+        width: 100%; /* Set the width to 100% */
+        max-width: 100%;
+    }
+    p{
+        color: #000;
+        font-family: Pangolin;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    .btn-close{
+        border-radius: 20px;
+        border: none; /* Remove individual border styles */
+        background-color: #92BCB5;
+        box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.75);
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+
+    }
+</style>
+
+<section class="mt-5">
+    <div class="container px-5">
+        <div id="map-container">
+            <div id="map"></div>
+            <div id="markerDetails" class="p-0">
+                <img id="markerImage" src="" alt="" class="img-fluid">
+                <p id="markerLocation" class="text-center my-5"></p>
+                <button id="closeButton" class="btn btn-close p-2"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Create a Leaflet map instance and set its initial view
+    var map = L.map('map').setView([41.9969, 21.4360], 13);
+
+    // Add a tile layer to the map (e.g., OpenStreetMap tiles)
+    var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    }).addTo(map);
+
+    var marker1 = L.marker([42.00414810907321, 21.392610551886662]).addTo(map);
+    var marker2 = L.marker([42.0048991272611, 21.412263748196438]).addTo(map);
+    var marker3 = L.marker([41.990992586939115, 21.43620103490838]).addTo(map);
+    var marker4 = L.marker([41.981357462271404, 21.47299307640438]).addTo(map);
+    var marker5 = L.marker([42.00179757225024, 21.462129984263868]).addTo(map);
+    var marker6 = L.marker([41.979108150511905, 21.4417188907214]).addTo(map);
+
+    // Content for each marker
+    var markerContent = [
+        {
+            image: '{% static "images/scm1.png" %}',
+            location: 'Skopje City Mall\n Ljubljanska 4, Skopje 1000',
+        },
+        {
+            image: '{% static "images/ruzveltova.png" %}',
+            location: 'Local Branch of Red Cross Karposh\n 155V, Orce Nikolov 1000, Skopje 1000',
+        },
+        {
+            image: '{% static "images/images.png" %}',
+            location: 'In front of the building of Red Cross of the Republic of North Macedonia\n Boulevard Kocho Racin 13, Skopje 1000',
+        },
+        {
+            image: '{% static "images/images.png" %}',
+            location: 'In Novo Lisice, opposite the Shopping center „Lisa“\n MK, Boulevard Vidoe Smilevski Bato 1000, Skopje 1000',
+        },
+        {
+            image: '{% static "images/images.png" %}',
+            location: 'Square „Philip II”\n Jani Lukrovski 2, Skopje 1000',
+        },
+        {
+            image: '{% static "images/images.png" %}',
+            location: 'In front of Municipality of Kisela Voda\n Skopje 1000',
+        },
+    ];
+
+    // Function to show marker details
+    function showMarkerDetails(markerIndex) {
+        var markerDetails = document.getElementById('markerDetails');
+        var markerImage = document.getElementById('markerImage');
+        var markerLocation = document.getElementById('markerLocation');
+
+        markerImage.src = markerContent[markerIndex].image;
+        markerLocation.innerText = markerContent[markerIndex].location;
+
+        markerDetails.style.display = 'block';
+    }
+
+    marker1.on('click', function () {
+        showMarkerDetails(0);
+    });
+
+    marker2.on('click', function () {
+        showMarkerDetails(1);
+    });
+
+    marker3.on('click', function () {
+        showMarkerDetails(2);
+    });
+
+    marker4.on('click', function () {
+        showMarkerDetails(3);
+    });
+
+    marker5.on('click', function () {
+        showMarkerDetails(4);
+    });
+
+    marker6.on('click', function () {
+        showMarkerDetails(5);
+    });
+
+    document.getElementById('closeButton').addEventListener('click', function () {
+    var markerDetails = document.getElementById('markerDetails');
+    markerDetails.style.display = 'none';
+});
+
+</script>
+
+{% endblock %}
