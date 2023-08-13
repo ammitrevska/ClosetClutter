@@ -167,3 +167,17 @@ def notifyMe(request):
     subscribers = Subscriber.objects.all()
     context = {"subscribers": subscribers, "form": SubscriberForm}
     return render(request, "notifyMe.html", context=context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

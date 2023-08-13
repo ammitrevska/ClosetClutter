@@ -99,3 +99,15 @@ class Event(models.Model):
     description = models.TextField()
     volunteersJob = models.TextField()
     picture = models.ImageField(upload_to="event_images",null=True, blank=True)
+
+
+
+
+
+
+
+
+
+
+
+
