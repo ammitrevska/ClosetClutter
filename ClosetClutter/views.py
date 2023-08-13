@@ -19,3 +19,7 @@ def charityDetails(request, charityOrg_id):
     charity = get_object_or_404(CharityOrg, pk=charityOrg_id)
     context = {"charity": charity}
     return render(request, "charityDetails.html", context=context)
+
+
+def containers(request):
+    return render(request, "containers.html")
