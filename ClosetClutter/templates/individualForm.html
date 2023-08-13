@@ -14,7 +14,14 @@
             {{ wizard.form.description.label_tag }} {{ wizard.form.description }}
             {{ wizard.form.telephone.label_tag }} {{ wizard.form.telephone }}
             {{ wizard.form.mail.label_tag }} {{ wizard.form.mail }}
-            {{ wizard.form.gender.label_tag }} {{ wizard.form.gender }}
+            {{ wizard.form.gender.label_tag }}
+            <div class="form-check">
+                {% for gender_choice in wizard.form.gender %}
+                    <label class="form-check-label">
+                        {{ gender_choice.tag }} {{ gender_choice.choice_label }}
+                    </label>
+                {% endfor %}
+            </div>
             {{ wizard.form.size.label_tag }} {{ wizard.form.size }}
         {% elif wizard.steps.current == '1' %}
             {% comment %} Second Step - notify me {% endcomment %}
@@ -22,9 +29,9 @@
         {% endif %}
 
         {% if wizard.steps.prev %}
-            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">First Step</button>
-            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">Previous Step</button>
+            {#            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">First Step</button>#}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">Back</button>
         {% endif %}
-        <button type="submit">{% if wizard.steps.current == wizard.steps.last %}Submit{% else %}Next{% endif %}</button>
+        <button type="submit">{% if wizard.steps.current == wizard.steps.last %}Next{% else %}Next{% endif %}</button>
     </form>
 {% endblock %}

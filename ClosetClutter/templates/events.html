@@ -1,1 +1,4 @@
 <h2>events!</h2>
+{% for event in events %}
+    <img src="{{ MEDIA_URL }}{{ event.picture.url }}">
+{% endfor %}

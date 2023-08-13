@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import CharityOrg, Individual, Family, HumanitarianContainer, Event
+from .models import CharityOrg, Individual, Family, HumanitarianContainer, Event, Subscriber
 from django.shortcuts import render, redirect
-from .forms import IndividuaFormStep1, IndividuaFormStep2
+from .forms import IndividuaFormStep1, IndividuaFormStep2, FamilyFormStep1, FamilyFormStep2, SubscriberForm
 from formtools.wizard.views import SessionWizardView
 
 
@@ -90,7 +90,11 @@ class IndividualWizardView(SessionWizardView):
         # Combine data from all form steps
         combined_data = {}
         for form in form_list:
-            combined_data.update(form.cleaned_data)
+            if form.is_valid():
+                combined_data.update(form.cleaned_data)
+            else:
+                # Handle form errors here if needed
+                return self.render_revalidation_failure(form)
 
         individual = Individual(**combined_data)
         individual.save()
@@ -98,5 +102,68 @@ class IndividualWizardView(SessionWizardView):
         return redirect('successPage')  # Redirect to a success page
 
 
+def create_family_step1(request):
+    if request.method == 'POST':
+        form = FamilyFormStep1(request.POST)
+        if form.is_valid():
+            family_data = {
+                'name': form.cleaned_data['name'],
+                'members': list(form.cleaned_data['members'].values_list('id', flat=True)),
+                'description': form.cleaned_data['description'],
+                'telephone': form.cleaned_data['telephone'],
+                'mail': form.cleaned_data['mail'],
+                'numOfMembers': form.cleaned_data['numOfMembers'],
+                'numOfMembersMale': form.cleaned_data['numOfMembersMale'],
+                'numOfMembersFemale': form.cleaned_data['numOfMembersFemale'],
+                'location': form.cleaned_data['location'],
+                'additionalInfo': form.cleaned_data['additionalInfo'],
+            }
+            request.session['family_data'] = family_data
+            return redirect('create_family_step2')
+    else:
+        form = FamilyFormStep1()
+
+    context = {'form': form}
+    return render(request, 'family_form_step1.html', context)
+
+
+def create_family_step2(request):
+    family_data = request.session.get('family_data', {})
+
+    if request.method == 'POST':
+        form = FamilyFormStep2(request.POST)
+        if form.is_valid():
+            members = family_data['members']
+            family = Family.objects.create(name=family_data['name'],
+                                           description=family_data['description'],
+                                           telephone=family_data['telephone'],
+                                           mail=family_data['mail'],
+                                           numOfMembers=family_data['numOfMembers'],
+                                           numOfMembersMale=family_data['numOfMembersMale'],
+                                           numOfMembersFemale=family_data['numOfMembersFemale'],
+                                           location=family_data['location'],
+                                           additionalInfo=family_data['additionalInfo'],
+                                           notifyMe=form.cleaned_data['notifyMe'], )
+            family.members.set(members)  # Use set() to update the many-to-many relationship
+            return redirect('successPage')
+
+    else:
+        form = FamilyFormStep2()
+
+    context = {'form': form}
+    return render(request, 'family_form_step2.html', context)
+
+
 def successPage(request):
     return render(request, "successPage.html")
+
+def notifyMe(request):
+    if request.method == "POST":
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            subscriber = form.save(commit=False)
+            subscriber.save()
+            return redirect("successPage")
+    subscribers = Subscriber.objects.all()
+    context = {"subscribers": subscribers, "form": SubscriberForm}
+    return render(request, "notifyMe.html", context=context)

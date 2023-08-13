@@ -1,0 +1,8 @@
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Notify Me</button>
+    </form>
+
+</div>

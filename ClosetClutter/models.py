@@ -16,8 +16,8 @@ class CharityOrg(models.Model):
 
 
 class Individual(models.Model):
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
+    firstName = models.CharField(max_length=50, verbose_name='First name')
+    lastName = models.CharField(max_length=50, verbose_name='Second name')
     description = models.TextField()
     telephone = models.CharField(max_length=20)
     mail = models.EmailField(max_length=250)
@@ -25,7 +25,7 @@ class Individual(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    gender = models.CharField(max_length=1, choices=GENDERS)
+    gender = models.CharField(max_length=1, choices=GENDERS, default='M')
 
     SIZES = (
         ('XL', 'XL'),
@@ -51,13 +51,13 @@ class Individual(models.Model):
 
 
 class Family(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, verbose_name="Surname")
     description = models.TextField()
     telephone = models.CharField(max_length=20)
     mail = models.EmailField(max_length=250)
-    numOfMembers = models.PositiveIntegerField(validators=[MinValueValidator(1)])
-    numOfMembersMale = models.PositiveIntegerField()
-    numOfMembersFemale = models.PositiveIntegerField()
+    numOfMembers = models.PositiveIntegerField(verbose_name='Number of members')
+    numOfMembersMale = models.PositiveIntegerField(verbose_name='Number of male members')
+    numOfMembersFemale = models.PositiveIntegerField(verbose_name='Number of female members')
     location = models.CharField(max_length=200)
     additionalInfo = models.TextField()
     NOTIFICATION_OPTIONS = (
@@ -79,14 +79,14 @@ class Family(models.Model):
 class HumanitarianContainer(models.Model):
     city = models.CharField(max_length=20)
     address = models.CharField(max_length=30)
-    picture = models.ImageField(null=True, blank=True)
+    picture = models.ImageField(upload_to="humanitarianContainers_images",null=True, blank=True)
 
     def __str__(self):
         return self.city + ", " + self.address
 
 
 class Subscriber(models.Model):
-    email = models.CharField(max_length=30)
+    email = models.EmailField(max_length=30)
     phone = models.CharField(max_length=10)
 
 
@@ -98,4 +98,4 @@ class Event(models.Model):
     place = models.CharField(max_length=50)
     description = models.TextField()
     volunteersJob = models.TextField()
-    picture = models.ImageField(null=True, blank=True)
+    picture = models.ImageField(upload_to="event_images",null=True, blank=True)
