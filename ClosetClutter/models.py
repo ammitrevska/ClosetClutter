@@ -1,3 +1,4 @@
+from django.contrib.admin import forms
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -12,6 +13,41 @@ class CharityOrg(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Individual(models.Model):
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+    description = models.TextField()
+    telephone = models.CharField(max_length=20)
+    mail = models.EmailField(max_length=250)
+    GENDERS = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    gender = models.CharField(max_length=1, choices=GENDERS)
+
+    SIZES = (
+        ('XL', 'XL'),
+        ('L', 'L'),
+        ('M', 'M'),
+        ('S', 'S'),
+        ('XS', 'XS')
+    )
+    size = models.CharField(max_length=2, choices=SIZES)
+    NOTIFICATION_OPTIONS = (
+        ('E', 'Email'),
+        ('P', 'Phone'),
+        ('B', 'Both')
+    )
+    notifyMe = models.CharField(max_length=1, choices=NOTIFICATION_OPTIONS)
+
+    @property
+    def is_family(self):
+        return False
+
+    def __str__(self):
+        return self.firstName + " " + self.lastName
 
 
 class Family(models.Model):
@@ -30,6 +66,7 @@ class Family(models.Model):
         ('B', 'Both')
     )
     notifyMe = models.CharField(max_length=1, choices=NOTIFICATION_OPTIONS)
+    members = models.ManyToManyField(Individual)
 
     @property
     def is_family(self):
@@ -37,41 +74,6 @@ class Family(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Individual(models.Model):
-    firstName = models.CharField(max_length=50)
-    lastName = models.CharField(max_length=50)
-    description = models.TextField()
-    telephone = models.CharField(max_length=20)
-    mail = models.EmailField(max_length=250)
-    GENDERS = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-    )
-    gender = models.CharField(max_length=1, choices=GENDERS)
-    SIZES = (
-        ('XL', 'XL'),
-        ('L', 'L'),
-        ('M', 'M'),
-        ('S', 'S'),
-        ('XS', 'XS')
-    )
-    size = models.CharField(max_length=2, choices=SIZES)
-    family = models.ForeignKey(Family, on_delete=models.CASCADE, blank=True, null=True)
-    NOTIFICATION_OPTIONS = (
-        ('E', 'Email'),
-        ('P', 'Phone'),
-        ('B', 'Both')
-    )
-    notifyMe = models.CharField(max_length=1, choices=NOTIFICATION_OPTIONS)
-
-    @property
-    def is_family(self):
-        return False
-
-    def __str__(self):
-        return self.firstName + self.lastName
 
 
 class HumanitarianContainer(models.Model):

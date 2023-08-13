@@ -1,0 +1,30 @@
+<!-- individual_form.html -->
+
+{#{% extends 'base.html' %}  <!-- Extend a base template if you have one -->#}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+
+        {% if wizard.steps.current == '0' %}
+            {% comment %} First Step - Individual's personal info {% endcomment %}
+            {{ wizard.form.firstName.label_tag }} {{ wizard.form.firstName }}
+            {{ wizard.form.lastName.label_tag }} {{ wizard.form.lastName }}
+            {{ wizard.form.description.label_tag }} {{ wizard.form.description }}
+            {{ wizard.form.telephone.label_tag }} {{ wizard.form.telephone }}
+            {{ wizard.form.mail.label_tag }} {{ wizard.form.mail }}
+            {{ wizard.form.gender.label_tag }} {{ wizard.form.gender }}
+            {{ wizard.form.size.label_tag }} {{ wizard.form.size }}
+        {% elif wizard.steps.current == '1' %}
+            {% comment %} Second Step - notify me {% endcomment %}
+            {{ wizard.form.notifyMe.label_tag }} {{ wizard.form.notifyMe }}
+        {% endif %}
+
+        {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">First Step</button>
+            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">Previous Step</button>
+        {% endif %}
+        <button type="submit">{% if wizard.steps.current == wizard.steps.last %}Submit{% else %}Next{% endif %}</button>
+    </form>
+{% endblock %}

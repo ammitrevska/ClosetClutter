@@ -3,7 +3,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from ClosetClutter.views import index, charityOrganization, charityDetails, individualsAndFamilies, entityDetails, \
-    humanitarianContainers, containerCard, getDirections, containerPic, learnAboutUs, events, eventDetails
+    humanitarianContainers, containerCard, getDirections, containerPic, learnAboutUs, events, eventDetails, \
+    IndividualWizardView, successPage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -18,7 +19,9 @@ urlpatterns = [
     path("containerPic/<int:container_id>/", containerPic, name="containerPic"),
     path("learnAboutUs/", learnAboutUs, name="learnAboutUs"),
     path("events/", events, name="events"),
-    path("event/<int:event_id>/", eventDetails, name="eventDetails")
+    path("event/<int:event_id>/", eventDetails, name="eventDetails"),
+    path('individualForm/', IndividualWizardView.as_view(), name='individualForm'),
+    path('success/', successPage, name='successPage'),
 
 ]
 

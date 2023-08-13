@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import CharityOrg, Individual, Family, HumanitarianContainer, Event
+from django.shortcuts import render, redirect
+from .forms import IndividuaFormStep1, IndividuaFormStep2
+from formtools.wizard.views import SessionWizardView
 
 
 # Create your views here.
@@ -78,3 +81,22 @@ def eventDetails(request, event_id):
     context = {"event": event}
     return render(request, "eventDetails.html", context=context)
 
+
+class IndividualWizardView(SessionWizardView):
+    template_name = 'individualForm.html'
+    form_list = [IndividuaFormStep1, IndividuaFormStep2]
+
+    def done(self, form_list, **kwargs):
+        # Combine data from all form steps
+        combined_data = {}
+        for form in form_list:
+            combined_data.update(form.cleaned_data)
+
+        individual = Individual(**combined_data)
+        individual.save()
+
+        return redirect('successPage')  # Redirect to a success page
+
+
+def successPage(request):
+    return render(request, "successPage.html")
