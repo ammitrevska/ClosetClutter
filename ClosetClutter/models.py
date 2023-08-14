@@ -89,9 +89,9 @@ class Subscriber(models.Model):
 
 
 class Event(models.Model):
-    TYPES = (('M', 'Meeting'),
-             ('W', 'Workshop'))
-    eventType = models.CharField(max_length=1, choices=TYPES)
+    TYPES = (('Meeting', 'Meeting'),
+             ('Workshop', 'Workshop'))
+    eventType = models.CharField(max_length=10, choices=TYPES)
     date = models.DateField()
     place = models.CharField(max_length=50)
     description = models.TextField()

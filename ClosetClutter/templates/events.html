@@ -1,1 +1,54 @@
-<h2>events!</h2>
+{% extends "base_generic.html" %}
+
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+
+<style>
+    p{
+        color: #000;
+        font-family: Pangolin;
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    h5{
+        color: #000;
+        font-family: Pangolin;
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+</style>
+
+<section class="mt-5">
+    <div class="container ps-5">
+        <h2 class="pt-5">Volunteer</h2>
+        <p class="pt-4">Upcoming:</p>
+        <div class="row">
+            {% for event in events %}
+
+            <div class="col-4 mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'event.picture' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title text-center">{{ event.eventType }}</h5>
+                        <div class="d-flex justify-content-between pt-3">
+                            <a href="#" class="btn btn-color">Join Us</a>
+                            <a href="{% url 'eventDetails' event.id %}" class="btn btn-color">More Details</a>
+                        </div>
+                  </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
