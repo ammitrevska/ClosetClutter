@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from ClosetClutter.views import index, charityOrganization, charityDetails, containers, individualsAndFamilies, events, eventDetails
+from ClosetClutter.views import index, charityOrganization, charityDetails, containers, individualsAndFamilies, events, eventDetails, getNotified
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +14,7 @@ urlpatterns = [
     path("directly/", individualsAndFamilies, name="individualsAndFamilies"),
     path("events/", events, name="events"),
     path("events/<int:eventId>/", eventDetails, name="eventDetails"),
+    path("getNotified", getNotified, name="getNotified"),
 ]
 
 if settings.DEBUG:
