@@ -86,6 +86,38 @@
         line-height: 24px;
     }
 
+    .btn-color{
+        border-radius: 6px;
+        border-right: 1px solid #92BCB5;
+        border-bottom: 1px solid #92BCB5;
+        border-left: 1px solid #92BCB5;
+        background: #92BCB5;
+        box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
+    }
+
+     .card{
+        border-radius: 17px;
+        background: #B8D5DC;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .details h6{
+        color: #000;
+        font-family: Pangolin;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: capitalize;
+    }
+
+    .details p{
+        color: #000;
+        font-family: Poppins;
+        font-size: 17px;
+        text-transform: lowercase;
+    }
+
 </style>
 <section class="mt-4">
 
@@ -109,8 +141,8 @@
             <a class="nav-link pb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About us</a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Learn about us</a></li>
-                <li><a class="dropdown-item" href="#">Volunteer</a></li>
-                <li><a class="dropdown-item" href="#">Get Notified</a></li>
+                <li><a class="dropdown-item" href="{% url 'events' %}">Volunteer</a></li>
+                <li><a class="dropdown-item" href="{% url 'getNotified' %}">Get Notified</a></li>
             </ul>
           </li>
         </ul>

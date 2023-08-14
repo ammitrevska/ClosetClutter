@@ -42,3 +42,7 @@ def eventDetails(request, eventId):
     event = get_object_or_404(Event, pk=eventId)
     context = {"event": event}
     return render(request, "eventDetails.html", context=context)
+
+
+def getNotified(request):
+    return render(request, "getNotified.html")
