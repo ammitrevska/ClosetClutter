@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from ClosetClutter.views import index, charityOrganization, charityDetails, individualsAndFamilies, entityDetails, \
-    humanitarianContainers, containerCard, getDirections, containerPic, learnAboutUs, events, eventDetails, \
+    learnAboutUs, events, eventDetails, \
     IndividualWizardView, successPage, create_family_step1, create_family_step2, notifyMe
 
 urlpatterns = [
@@ -27,6 +27,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
-
