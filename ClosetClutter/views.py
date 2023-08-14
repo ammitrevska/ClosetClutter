@@ -23,3 +23,7 @@ def charityDetails(request, charityOrg_id):
 
 def containers(request):
     return render(request, "containers.html")
+
+
+# def containerPic(request):
+#     return render(request, "containersPic.html")

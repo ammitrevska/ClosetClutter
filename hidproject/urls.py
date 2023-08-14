@@ -10,7 +10,8 @@ urlpatterns = [
     path('index/', index, name="index"),
     path('charity/', charityOrganization, name="charityOrganization"),
     path("charity/<int:charityOrg_id>/", charityDetails, name="charityDetails"),
-    path("containers/", containers, name="containers")
+    path("containers/", containers, name="containers"),
+    # path("containersPic/", containers, name="containers"),
 ]
 
 if settings.DEBUG:
