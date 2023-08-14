@@ -14,10 +14,7 @@ urlpatterns = [
                   path('individualsAndFamilies/', individualsAndFamilies, name="individualsAndFamilies"),
                   path("entity/<int:entity_id>/<str:is_family>/", entityDetails, name="entityDetails"),
                   # FAMILIES AND INDIVIDUALS are entities
-                  path("humanitarianContainers/", humanitarianContainers, name="humanitarianContainers"),
-                  path("containerCard/<int:container_id>/", containerCard, name="containerCard"),
-                  path("getDirections/<int:container_id>/", getDirections, name="getDirections"),
-                  path("containerPic/<int:container_id>/", containerPic, name="containerPic"),
+
                   path("learnAboutUs/", learnAboutUs, name="learnAboutUs"),
                   path("events/", events, name="events"),
                   path("event/<int:event_id>/", eventDetails, name="eventDetails"),

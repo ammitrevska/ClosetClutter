@@ -42,28 +42,7 @@ def entityDetails(request, entity_id, is_family):
     return render(request, "entityDetails.html", context=context)
 
 
-def humanitarianContainers(request):
-    containers = HumanitarianContainer.objects.all()  # Fetch all entries from the database
-    context = {"containers": containers}
-    return render(request, "humanitarianContainers.html", context=context)
 
-
-def containerCard(request, container_id):
-    container = get_object_or_404(HumanitarianContainer, pk=container_id)
-    context = {"container": container}
-    return render(request, "container.html", context=context)
-
-
-def getDirections(request, container_id):
-    container = get_object_or_404(HumanitarianContainer, pk=container_id)
-    context = {"container": container}
-    return render(request, "getDirections.html", context=context)
-
-
-def containerPic(request, container_id):
-    container = get_object_or_404(HumanitarianContainer, pk=container_id)
-    context = {"container": container}
-    return render(request, "containerPic.html", context=context)
 
 
 def learnAboutUs(request):
