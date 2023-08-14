@@ -42,6 +42,25 @@
         right: 10px;
 
     }
+
+    .expanded-image-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .expanded-image {
+        max-width: 90%;
+        max-height: 90%;
+    }
+
 </style>
 
 <section class="mt-5">
@@ -50,6 +69,10 @@
             <div id="map"></div>
             <div id="markerDetails" class="p-0">
                 <img id="markerImage" src="" alt="" class="img-fluid">
+                <div id="expandedImageContainer" class="expanded-image-container">
+                    <img id="expandedImage" src="" alt="" class="img-fluid expanded-image">
+                    <button id="closeExpandedButton" class="btn btn-close p-2"></button>
+                </div>
                 <p id="markerLocation" class="text-center my-5"></p>
                 <button id="closeButton" class="btn btn-close p-2"></button>
             </div>
@@ -103,14 +126,40 @@
 
     // Function to show marker details
     function showMarkerDetails(markerIndex) {
-        var markerDetails = document.getElementById('markerDetails');
         var markerImage = document.getElementById('markerImage');
+        var expandedImage = document.getElementById('expandedImage');
         var markerLocation = document.getElementById('markerLocation');
 
         markerImage.src = markerContent[markerIndex].image;
+        expandedImage.src = markerContent[markerIndex].image;
         markerLocation.innerText = markerContent[markerIndex].location;
 
+        var markerDetails = document.getElementById('markerDetails');
+        var closeButton = document.getElementById('closeButton');
+        var expandedImageContainer = document.getElementById('expandedImageContainer');
+        var closeExpandedButton = document.getElementById('closeExpandedButton');
+
         markerDetails.style.display = 'block';
+        expandedImageContainer.style.display = 'none';
+
+        markerImage.addEventListener('click', function () {
+            expandedImageContainer.style.display = 'flex';
+        });
+
+        closeExpandedButton.addEventListener('click', function () {
+            expandedImageContainer.style.display = 'none';
+        });
+
+        closeButton.addEventListener('click', function () {
+            markerDetails.style.display = 'none';
+            expandedImageContainer.style.display = 'none';
+        });
+
+        expandedImageContainer.addEventListener('click', function (event) {
+        if (event.target === expandedImageContainer) {
+            expandedImageContainer.style.display = 'none';
+        }
+        });
     }
 
     marker1.on('click', function () {
