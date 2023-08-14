@@ -1,1 +1,49 @@
-<h2>Event DETAILS</h2>
+{% extends "base_generic.html" %}
+
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+
+<style>
+    .row>* {
+        width:15%;
+    }
+</style>
+
+<section class="mt-4">
+    <div class="container ps-5">
+        <img src="{% static 'event.picture' %}" alt="">
+        <div class="details mt-4">
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Date:</h6>
+                <p class="d-inline fw-lighter">{{ event.date }}</p>
+            </div>
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Place:</h6>
+                <p class="d-inline fw-lighter">{{ event.place }}</p>
+            </div>
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Description:</h6>
+                <p class="d-inline fw-lighter">{{ event.description }}</p>
+            </div>
+            <div class="py-3">
+                <h6 class="d-inline pe-1">Volunteers Job:</h6>
+                <p class="d-inline fw-lighter">{{ event.volunteersJob }}</p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-between w-0">
+            <a href="{% url 'events'%}"> <button type="button" class="btn navbtn mt-5 p-2 px-5">
+            <i class="bi bi-chevron-left"></i>Back</button></a>
+
+            <a href="#" > <button type="button" class="btn navbtn mt-5 p-2 px-5">Join Us</button></a>
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

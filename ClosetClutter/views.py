@@ -25,5 +25,20 @@ def containers(request):
     return render(request, "containers.html")
 
 
-# def containerPic(request):
-#     return render(request, "containersPic.html")
+def individualsAndFamilies(request):
+    qs = Family.objects.all()
+    qs = Individual.objects.all(
+    )
+    return render(request, "individualsAndFamilies.html")
+
+
+def events(request):
+    qs = Event.objects.all()
+    context = {"events": qs}
+    return render(request, "events.html", context=context)
+
+
+def eventDetails(request, eventId):
+    event = get_object_or_404(Event, pk=eventId)
+    context = {"event": event}
+    return render(request, "eventDetails.html", context=context)
