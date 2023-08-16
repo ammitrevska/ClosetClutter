@@ -12,7 +12,10 @@
 
 <section class="mt-4">
     <div class="container ps-5">
-        <img src="{% static 'event.picture' %}" alt="">
+        <div class="row d-flex justify-content-center">
+            <img src="{{ MEDIA_URL }}{{ event.picture.url }}" class="w-100 h-50 image-fluid aspect-fit">
+        </div>
+
         <div class="details mt-4">
             <div class="py-3">
                 <h6 class="d-inline pe-1">Date:</h6>
@@ -32,18 +35,14 @@
             </div>
         </div>
 
-        <div class="row d-flex justify-content-between w-0">
+        <div class="row d-flex justify-content-between w-0 mb-5">
             <a href="{% url 'events'%}"> <button type="button" class="btn navbtn mt-5 p-2 px-5">
             <i class="bi bi-chevron-left"></i>Back</button></a>
 
             <a href="#" > <button type="button" class="btn navbtn mt-5 p-2 px-5">Join Us</button></a>
         </div>
-
-
-
     </div>
 
 </section>
-
 
 {% endblock %}
