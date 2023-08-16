@@ -1,9 +1,60 @@
-<div>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Notify Me</button>
-    </form>
+{% extends "base_generic.html" %}
 
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+
+<section class="mt-5">
+    <div class="container ps-5">
+        <p class="py-4 pangolin">Get notified for all the upcoming events so you won’t miss any of them!! <br>
+            Fill out how would you want to be notified, either email, phone or both  :)</p>
+        <div class="row py-4">
+                 <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                     <div class="row pt-5">
+                        <div class="col-auto ms-auto">
+                            <button type="submit"  class="navbtn px-3 py-2 border border-0" data-bs-toggle="modal"
+                                    data-bs-target="#success">Notify Me</button>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h2 class="modal-title fs-5" id="exampleModalLabel">Modal title</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <p>Success!! <br>
+                                      For now on you will be notified for all the upcoming events.
+                                      </p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-color" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
 </div>
+</section>
 
+<script>
+
+     const myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+        keyboard: false
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            myModal.show();
+        });
+    });
+</script>
+
+{% endblock %}

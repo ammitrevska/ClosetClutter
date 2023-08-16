@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-
 from .forms import IndividuaFormStep1, IndividuaFormStep2 , FamilyFormStep1, FamilyFormStep2, SubscriberForm
 from .models import CharityOrg, Individual, Family, HumanitarianContainer, Event, Subscriber
 from django.shortcuts import render, redirect
@@ -41,16 +40,14 @@ def events(request):
     return render(request, "events.html", context=context)
 
 
-def eventDetails(request, eventId):
-    event = get_object_or_404(Event, pk=eventId)
+def eventDetails(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
     context = {"event": event}
     return render(request, "eventDetails.html", context=context)
 
 
 def getNotified(request):
     return render(request, "getNotified.html")
-
-
 
 
 def entityDetails(request, entity_id, is_family):
@@ -62,13 +59,9 @@ def entityDetails(request, entity_id, is_family):
     context = {"entity": entity}
     return render(request, "entityDetails.html", context=context)
 
-
-
-
+  
 def learnAboutUs(request):
     return render(request, "learnAboutUs.html")
-
-
 
 
 class IndividualWizardView(SessionWizardView):
@@ -143,21 +136,13 @@ def create_family_step2(request):
     return render(request, 'family_form_step2.html', context)
 
 
-def successPage(request):
-    return render(request, "successPage.html")
-
-
-
-
 def notifyMe(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
-            subscriber = form.save(commit=False)
-            subscriber.save()
-            return redirect("successPage")
-    subscribers = Subscriber.objects.all()
-    context = {"subscribers": subscribers, "form": SubscriberForm}
-    return render(request, "notifyMe.html", context=context)
+            form.save()
+            return render(request, 'notifyMe.html')  # Render a success page or redirect
+    else:
+        form = SubscriberForm()
 
-
+    return render(request, 'notifyMe.html', {'form': form})

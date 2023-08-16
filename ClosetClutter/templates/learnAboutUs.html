@@ -1,1 +1,39 @@
-<h2>learn about us</h2>
+{% extends "base_generic.html" %}
+
+{% load static %}  <!-- Load the static tag library -->
+
+{% block content %}
+
+<section class="mt-5">
+    <div class="container ps-5">
+        <h2 class="pt-5">About ClosetClutter: Transforming Lives Through Generosity</h2>
+        <div class="row details">
+                <p class="mt-3">At ClosetClutter, we believe in the power of giving and the profound impact it can have on individuals and communities.
+                    Our organization is more than just a platform to donate clothes – we are a movement that aims to create positive change and
+                    transform lives.<br class="mb-2">
+
+                    <p>Founded with a vision to bridge the gap between those with resources and those in need, ClosetClutter has become a beacon
+                    of hope for individuals and families looking to make a difference. Our mission is simple yet profound:
+                    to connect generosity with necessity.<p>
+                    <p>We understand that the act of donating clothes can be a powerful way to contribute to the well-being of others.
+                    Whether it's providing warmth to someone during the cold winter months or offering a fresh start to someone seeking a new beginning,
+                    each piece of clothing shared through ClosetClutter tells a story of compassion and care.<p>
+                    <p>What sets ClosetClutter apart is our commitment to building a community of givers. Through our events, workshops, and partnerships,
+                    we inspire and educate individuals about the transformative impact of their contributions. We believe that giving is not just
+                    an action, but a mindset that has the potential to shape a brighter future for everyone.<p>
+                    <p>As we work tirelessly to sort, distribute, and uplift, we are driven by a sense of purpose – a purpose to create a world where
+                    no one feels forgotten or overlooked. ClosetClutter is more than an organization; it's a family of like-minded individuals who
+                    share a common goal: to make a positive difference in the lives of those around us.<p>
+                    <p><b>Join us on this journey of kindness, generosity, and change. Together, we can turn clutter into hope,
+                    and transform lives one piece of clothing at a time.<b><p>
+
+            <div class="d-flex justify-content-center">
+                <p id="logo">ClosetClutter – Sharing, Caring, Changing Lives. <i class="bi bi-balloon-heart"></i></p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

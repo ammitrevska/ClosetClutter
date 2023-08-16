@@ -115,9 +115,35 @@
         color: #000;
         font-family: Poppins;
         font-size: 17px;
-        text-transform: lowercase;
+        /*text-transform: lowercase;*/
     }
 
+     .name{
+        color: #000;
+        font-family: Preahvihear;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+      }
+
+     p{
+         color: #000;
+         font-family: Pangolin;
+         font-style: normal;
+         font-weight: 400;
+         line-height: normal;
+     }
+
+    .pangolin p{
+        color: #000;
+        font-family: Pangolin;
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 114.286% */
+    }
 </style>
 <section class="mt-4">
 
@@ -130,19 +156,19 @@
             <a class="nav-link pb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Options to donate</a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'charityOrganization'%}">Charity</a></li>
-                <li><a class="dropdown-item" href="#">Directly</a></li>
+                <li><a class="dropdown-item" href="{% url 'individualsAndFamilies' %}">Directly</a></li>
                 <li><a class="dropdown-item" href="{% url 'containers'%}">Containers</a></li>
             </ul>
           </li>
           <li class="nav-item pe-4">
-            <a class="nav-link pb-0" href="#">Apply for aid</a>
+            <a class="nav-link pb-0" href="{% url 'individualForm' %}">Apply for aid</a>
           </li>
           <li class="nav-item dropdown pe-4">
             <a class="nav-link pb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About us</a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Learn about us</a></li>
+                <li><a class="dropdown-item" href="{% url 'learnAboutUs' %}">Learn about us</a></li>
                 <li><a class="dropdown-item" href="{% url 'events' %}">Volunteer</a></li>
-                <li><a class="dropdown-item" href="{% url 'getNotified' %}">Get Notified</a></li>
+                <li><a class="dropdown-item" href="{% url 'notifyMe' %}">Get Notified</a></li>
             </ul>
           </li>
         </ul>
