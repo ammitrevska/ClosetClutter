@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from .forms import IndividuaFormStep1, IndividuaFormStep2 , FamilyFormStep1, FamilyFormStep2, SubscriberForm
 from .models import CharityOrg, Individual, Family, HumanitarianContainer, Event, Subscriber
 from django.shortcuts import render, redirect
-from .forms import IndividuaFormStep1, IndividuaFormStep2, FamilyFormStep1, FamilyFormStep2, SubscriberForm
 from formtools.wizard.views import SessionWizardView
-
 
 # Create your views here.
 def index(request):
@@ -60,7 +59,7 @@ def entityDetails(request, entity_id, is_family):
     context = {"entity": entity}
     return render(request, "entityDetails.html", context=context)
 
-
+  
 def learnAboutUs(request):
     return render(request, "learnAboutUs.html")
 

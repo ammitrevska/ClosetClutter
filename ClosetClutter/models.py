@@ -55,7 +55,7 @@ class Family(models.Model):
     description = models.TextField()
     telephone = models.CharField(max_length=20)
     mail = models.EmailField(max_length=250)
-    numOfMembers = models.PositiveIntegerField(verbose_name='Number of members')
+    numOfMembers = models.PositiveIntegerField(validators=[MinValueValidator(1)], verbose_name='Number of members')
     numOfMembersMale = models.PositiveIntegerField(verbose_name='Number of male members')
     numOfMembersFemale = models.PositiveIntegerField(verbose_name='Number of female members')
     location = models.CharField(max_length=200)
@@ -81,6 +81,7 @@ class HumanitarianContainer(models.Model):
     address = models.CharField(max_length=30)
     picture = models.ImageField(upload_to="humanitarianContainers_images",null=True, blank=True)
 
+
     def __str__(self):
         return self.city + ", " + self.address
 
@@ -91,9 +92,9 @@ class Subscriber(models.Model):
 
 
 class Event(models.Model):
-    TYPES = (('Meeting', 'Meeting'),
-             ('Workshop', 'Workshop'))
-    eventType = models.CharField(max_length=10, choices=TYPES)
+    TYPES = (('M', 'Meeting'),
+             ('W', 'Workshop'))
+    eventType = models.CharField(max_length=1, choices=TYPES)
     date = models.DateField()
     place = models.CharField(max_length=50)
     description = models.TextField()

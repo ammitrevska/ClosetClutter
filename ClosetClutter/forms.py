@@ -34,20 +34,3 @@ class SubscriberForm(forms.ModelForm):
     class Meta:
         model = Subscriber
         fields = ['email', 'phone']
-
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get('email')
-        phone = cleaned_data.get('phone')
-
-        if not email and not phone:
-            raise forms.ValidationError("Please provide at least one contact method (email or phone).")
-
-        return cleaned_data
-
-
-
-
-
-
-
