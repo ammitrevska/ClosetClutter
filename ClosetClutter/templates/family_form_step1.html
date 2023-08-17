@@ -1,13 +1,127 @@
+
+
 {% extends "base_generic.html" %}
 
 {% load static %}  <!-- Load the static tag library -->
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Next</button>
-    </form>
+    <div class="container mt-5">
+        <form method="post">
+            {% csrf_token %}
+            {#        {{ form.as_p }}#}
+
+            <div class="row mb-3">
+                <div class="col-2 pe-0">
+                    {{ form.name.label_tag }}
+                </div>
+                <div class="col-1 ps-0">
+                    {{ form.name }}
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-2 pe-0">
+                    {{ form.description.label_tag }}
+                </div>
+                <div class="col-1 ps-0">
+                    {{ form.description }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2 pe-0">
+                    {{ form.telephone.label_tag }}
+                </div>
+                <div class="col-1 ps-0">
+                    {{ form.telephone }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2 pe-0">
+                    {{ form.mail.label_tag }}
+                </div>
+                <div class="col-1 ps-0">
+                    {{ form.mail }}
+                </div>
+            </div>
+{#            <div class="row mb-3">#}
+{#                <div class="col-2 pe-0">#}
+{#                    {{ form.numOfMembers.label_tag }}#}
+{#                </div>#}
+{#                <div class="col-1 ps-0">#}
+{#                    {{ form.numOfMembers }}#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row mb-3">#}
+{#                <div class="col-2 pe-0">#}
+{#                    {{ form.numOfMembersMale.label_tag }}#}
+{#                </div>#}
+{#                <div class="col-1 ps-0">#}
+{#                    {{ form.numOfMembersMale }}#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row mb-3">#}
+{#                <div class="col-2 pe-0">#}
+{#                    {{ form.numOfMembersFemale.label_tag }}#}
+{#                </div>#}
+{#                <div class="col-1 ps-0">#}
+{#                    {{ form.numOfMembersFemale }}#}
+{#                </div>#}
+{#            </div>#}
+            <div class="row mb-3">
+                <div class="col-2 pe-0">
+                    {{ form.location.label_tag }}
+                </div>
+                <div class="col-1 ps-0">
+                    {{ form.location }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2 pe-0">
+                    {{ form.additionalInfo.label_tag }}
+                </div>
+                <div class="col-1 ps-0">
+                    {{ form.additionalInfo }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-2 pe-0">
+                    {{ form.members.label_tag }}
+                </div>
+                <div class="col-1 ps-0">
+                    {{ form.members }}
+                </div>
+            </div>
+
+{#            <button type="submit">Next</button>#}
+
+            <div class="col-12 d-flex justify-content-end">
+                <button type="submit" class="btn navbtn mt-5 p-2 px-5">
+
+                        <i class="bi bi-chevron-right"></i>Next
+                </button>
+            </div>
+
+
+        </form>
+    </div>
 {% endblock %}
 
 
+
+
+{#{% extends "base_generic.html" %}#}
+{##}
+{#{% load static %}  <!-- Load the static tag library -->#}
+{##}
+{#{% block content %}#}
+{#        <div class="container mt-5">#}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{##}
+{#        <button type="submit">Next</button>#}
+{#    </form>#}
+{#        </div>#}
+{#{% endblock %}#}
+{##}
+{##}

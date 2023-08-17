@@ -4,10 +4,54 @@
 
 {% block content %}
 
+<style>
+  ul div{
+    border-radius: 12px;
+    background: #B8D5DC;
+  }
+</style>
+
+
 <section class="mt-5">
   <div class="container ps-5">
     <h2 class="pt-5">Families and Individuals</h2>
+    <ul class="list-unstyled">
+      {% for family in families %}
+        <div class="align-items-center d-flex justify-content-between p-3">
+          <li class="name ">{{family.name}}</li>
+          <a href="{% url 'entityDetails' family.id 'true' %}">
+            <img src="{% static 'images/arrows.png'%}" alt="" style="width: 24px;height: 24px;">
+          </a>
+        </div>
+          <div class="m-2"></div>
+      {% endfor %}
+          {% for individual in individuals %}
+        <div class="align-items-center d-flex justify-content-between p-3">
+          <li class="name">{{individual }}</li>
+          <a href="{% url 'entityDetails' individual.id 'false' %}">
+            <img src="{% static 'images/arrows.png'%}" alt="" style="width: 24px;height: 24px;">
+          </a>
+        </div>
+              <div class="m-2"></div>
+      {% endfor %}
+    </ul>
   </div>
 </section>
 
 {% endblock %}
+
+{#{% extends "base_generic.html" %}#}
+{##}
+{#{% load static %}  <!-- Load the static tag library -->#}
+{##}
+{#{% block content %}#}
+{##}
+{#<section class="mt-5">#}
+{#  <div class="container ps-5">#}
+{#    <h2 class="pt-5">Families and Individuals</h2>#}
+{#  </div>#}
+{#</section>#}
+{##}
+{#{% endblock %}#}
+{##}
+

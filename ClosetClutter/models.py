@@ -28,11 +28,9 @@ class Individual(models.Model):
     gender = models.CharField(max_length=1, choices=GENDERS, default='M')
 
     SIZES = (
-        ('XL', 'XL'),
         ('L', 'L'),
         ('M', 'M'),
         ('S', 'S'),
-        ('XS', 'XS')
     )
     size = models.CharField(max_length=2, choices=SIZES)
     NOTIFICATION_OPTIONS = (
@@ -40,7 +38,9 @@ class Individual(models.Model):
         ('P', 'Phone'),
         ('B', 'Both')
     )
-    notifyMe = models.CharField(max_length=1, choices=NOTIFICATION_OPTIONS)
+    notifyMe = models.CharField(max_length=1, choices=NOTIFICATION_OPTIONS, verbose_name="Notify me")
+    location = models.CharField(max_length=200, null=True, blank=True)
+    additionalInfo = models.TextField(verbose_name="Additional information", null=True, blank=True)
 
     @property
     def is_family(self):
@@ -55,22 +55,47 @@ class Family(models.Model):
     description = models.TextField()
     telephone = models.CharField(max_length=20)
     mail = models.EmailField(max_length=250)
-    numOfMembers = models.PositiveIntegerField(validators=[MinValueValidator(1)], verbose_name='Number of members')
-    numOfMembersMale = models.PositiveIntegerField(verbose_name='Number of male members')
-    numOfMembersFemale = models.PositiveIntegerField(verbose_name='Number of female members')
     location = models.CharField(max_length=200)
-    additionalInfo = models.TextField()
+    additionalInfo = models.TextField(verbose_name="Additional information",null=True, blank=True)
     NOTIFICATION_OPTIONS = (
         ('E', 'Email'),
         ('P', 'Phone'),
         ('B', 'Both')
     )
-    notifyMe = models.CharField(max_length=1, choices=NOTIFICATION_OPTIONS)
+    notifyMe = models.CharField(max_length=1, choices=NOTIFICATION_OPTIONS, null=True, blank=True)
     members = models.ManyToManyField(Individual)
 
     @property
     def is_family(self):
         return True
+
+    # @property
+    # def num_small_members(self):
+    #     return self.members.filter(size='M').count()
+
+    def count_members_m_m(self):
+        filtered_members = self.members.filter(gender='M', size='M')
+        return filtered_members.count()
+
+    def count_members_m_s(self):
+        filtered_members = self.members.filter(gender='M', size='S')
+        return filtered_members.count()
+
+    def count_members_m_l(self):
+        filtered_members = self.members.filter(gender='M', size='L')
+        return filtered_members.count()
+
+    def count_members_f_s(self):
+        filtered_members = self.members.filter(gender='F', size='S')
+        return filtered_members.count()
+
+    def count_members_f_m(self):
+        filtered_members = self.members.filter(gender='F', size='M')
+        return filtered_members.count()
+
+    def count_members_f_l(self):
+        filtered_members = self.members.filter(gender='F', size='L')
+        return filtered_members.count()
 
     def __str__(self):
         return self.name
@@ -79,8 +104,7 @@ class Family(models.Model):
 class HumanitarianContainer(models.Model):
     city = models.CharField(max_length=20)
     address = models.CharField(max_length=30)
-    picture = models.ImageField(upload_to="humanitarianContainers_images",null=True, blank=True)
-
+    picture = models.ImageField(upload_to="humanitarianContainers_images", null=True, blank=True)
 
     def __str__(self):
         return self.city + ", " + self.address
@@ -99,4 +123,4 @@ class Event(models.Model):
     place = models.CharField(max_length=50)
     description = models.TextField()
     volunteersJob = models.TextField()
-    picture = models.ImageField(upload_to="event_images",null=True, blank=True)
+    picture = models.ImageField(upload_to="event_images", null=True, blank=True)
