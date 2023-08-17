@@ -1,13 +1,53 @@
-<!-- family_form_step2.html -->
 
-{#{% extends 'base.html' %}#}
+
+{% extends "base_generic.html" %}
+
+{% load static %}
+
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Next</button>
-    </form>
+    <div class="container mt-5">
+
+        <div class="details pt-2">
+
+            <h6 class="d-inline pe-1">We can notify you if you are going to be published on our site.</h6>
+            </br>
+            <h6 class="d-inline pe-1">Where should we notify you?</h6>
+            </br>
+            </br>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {#        {{ form.as_p }}#}
+
+            <div class="row mb-3">
+
+                <div class="col-3 ps-0 ms-3">
+                    {{ form.notifyMe }}
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-6 d-flex justify-content-start">
+
+                    <a href="{% url 'create_family_step1' %}" class="btn navbtn mt-5 p-2 px-5">
+                        <i class="bi bi-chevron-left"></i>Back
+                    </a>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <button type="submit" class="btn navbtn mt-5 p-2 px-5">
+                        {% if wizard.steps.current == wizard.steps.last %} <i class="bi bi-chevron-right"></i>
+                            Next{% else %}
+                            <i class="bi bi-chevron-right"></i>Next{% endif %}</button>
+
+                </div>
+
+
+            </div>
+
+        </form>
+    </div>
 {% endblock %}
 
 

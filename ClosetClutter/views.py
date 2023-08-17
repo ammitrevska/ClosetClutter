@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import IndividuaFormStep1, IndividuaFormStep2 , FamilyFormStep1, FamilyFormStep2, SubscriberForm
+from .forms import IndividuaFormStep1, IndividuaFormStep2, FamilyFormStep1, FamilyFormStep2, SubscriberForm
 from .models import CharityOrg, Individual, Family, HumanitarianContainer, Event, Subscriber
 from django.shortcuts import render, redirect
 from formtools.wizard.views import SessionWizardView
+
 
 # Create your views here.
 def index(request):
@@ -28,10 +29,10 @@ def containers(request):
 
 
 def individualsAndFamilies(request):
-    qs = Family.objects.all()
-    qs = Individual.objects.all(
-    )
-    return render(request, "individualsAndFamilies.html")
+    families = Family.objects.all()
+    individuals = Individual.objects.all()
+    context = {"families": families, "individuals": individuals}
+    return render(request, "individualsAndFamilies.html", context=context)
 
 
 def events(request):
@@ -59,7 +60,7 @@ def entityDetails(request, entity_id, is_family):
     context = {"entity": entity}
     return render(request, "entityDetails.html", context=context)
 
-  
+
 def learnAboutUs(request):
     return render(request, "learnAboutUs.html")
 
@@ -94,9 +95,9 @@ def create_family_step1(request):
                 'description': form.cleaned_data['description'],
                 'telephone': form.cleaned_data['telephone'],
                 'mail': form.cleaned_data['mail'],
-                'numOfMembers': form.cleaned_data['numOfMembers'],
-                'numOfMembersMale': form.cleaned_data['numOfMembersMale'],
-                'numOfMembersFemale': form.cleaned_data['numOfMembersFemale'],
+                # 'numOfMembers': form.cleaned_data['numOfMembers'],
+                # 'numOfMembersMale': form.cleaned_data['numOfMembersMale'],
+                # 'numOfMembersFemale': form.cleaned_data['numOfMembersFemale'],
                 'location': form.cleaned_data['location'],
                 'additionalInfo': form.cleaned_data['additionalInfo'],
             }
@@ -120,9 +121,9 @@ def create_family_step2(request):
                                            description=family_data['description'],
                                            telephone=family_data['telephone'],
                                            mail=family_data['mail'],
-                                           numOfMembers=family_data['numOfMembers'],
-                                           numOfMembersMale=family_data['numOfMembersMale'],
-                                           numOfMembersFemale=family_data['numOfMembersFemale'],
+                                           # numOfMembers=family_data['numOfMembers'],
+                                           # numOfMembersMale=family_data['numOfMembersMale'],
+                                           # numOfMembersFemale=family_data['numOfMembersFemale'],
                                            location=family_data['location'],
                                            additionalInfo=family_data['additionalInfo'],
                                            notifyMe=form.cleaned_data['notifyMe'], )
@@ -146,3 +147,17 @@ def notifyMe(request):
         form = SubscriberForm()
 
     return render(request, 'notifyMe.html', {'form': form})
+
+
+def applyForAid(request):
+    if request.method == 'POST':
+        selection = request.POST.get('selection')
+        if selection == 'individual':
+            return redirect('individualForm')
+        elif selection == 'family':
+            return redirect('/create_family/step1')
+    return render(request, 'applyForAid.html')
+
+
+def successPage(request):
+    return render(request, 'successPage.html')

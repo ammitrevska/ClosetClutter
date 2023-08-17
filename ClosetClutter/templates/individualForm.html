@@ -1,39 +1,194 @@
-<!-- individual_form.html -->
+{% extends "base_generic.html" %}
 
-{#{% extends 'base.html' %}  <!-- Extend a base template if you have one -->#}
-
-
+{% load static %}  <!-- Load the static tag library -->
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ wizard.management_form }}
+    <div class="container mt-5">
 
-        {% if wizard.steps.current == '0' %}
-            {% comment %} First Step - Individual's personal info {% endcomment %}
-            {{ wizard.form.firstName.label_tag }} {{ wizard.form.firstName }}
-            {{ wizard.form.lastName.label_tag }} {{ wizard.form.lastName }}
-            {{ wizard.form.description.label_tag }} {{ wizard.form.description }}
-            {{ wizard.form.telephone.label_tag }} {{ wizard.form.telephone }}
-            {{ wizard.form.mail.label_tag }} {{ wizard.form.mail }}
-            {{ wizard.form.gender.label_tag }}
-            <div class="form-check">
-                {% for gender_choice in wizard.form.gender %}
-                    <label class="form-check-label">
-                        {{ gender_choice.tag }} {{ gender_choice.choice_label }}
-                    </label>
-                {% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+
+            {% if wizard.steps.current == '0' %}
+                {% comment %} First Step - Individual's personal info {% endcomment %}
+                <div class="row mb-3">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.firstName.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0">
+                        {{ wizard.form.firstName }}
+                    </div>
+                </div>
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.lastName.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0">
+                        {{ wizard.form.lastName }}
+                    </div>
+                </div>
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.description.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0 ">
+                        {{ wizard.form.description }}
+                    </div>
+                </div>
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.telephone.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0 ">
+                        {{ wizard.form.telephone }}
+                    </div>
+                </div>
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.mail.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0 ">
+                        {{ wizard.form.mail }}
+                    </div>
+                </div>
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.gender.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0 ">
+                        <div class="form-check">
+                            {% for gender_choice in wizard.form.gender %}
+                                <label class="form-check-label">
+                                    {{ gender_choice.tag }} {{ gender_choice.choice_label }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.size.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0 ">
+                        {{ wizard.form.size }}
+                    </div>
+                </div>
+
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.location.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0 ">
+                        {{ wizard.form.location }}
+                    </div>
+                </div>
+
+                <div class="row mb-3 ">
+                    <div class="col-2 pe-0">
+                        {{ wizard.form.additionalInfo.label_tag }}
+                    </div>
+                    <div class="col-1 ps-0 ">
+                        {{ wizard.form.additionalInfo }}
+                    </div>
+                </div>
+
+            {% elif wizard.steps.current == '1' %}
+                {% comment %} Second Step - notify me {% endcomment %}
+                <div class="details pt-2">
+
+                    <h6 class="d-inline pe-1">We can notify you if you are going to be published on our site.</h6>
+                    </br>
+                    <h6 class="d-inline pe-1">Where should we notify you?</h6>
+                </br>
+                </br>
+                </div>
+
+                <div class="row mb-3 ">
+{#                    <div class="col-2 pe-0">#}
+{#                        {{ wizard.form.notifyMe.label_tag }}#}
+{#                    </div>#}
+                    <div class="col-3 ps-0 ms-3">
+                        {{ wizard.form.notifyMe }}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if wizard.steps.prev %}
+
+                <div class="col-6 d-flex justify-content-start" style="margin-bottom: -68px;">
+
+                    <button name="wizard_goto_step" type="submit" class="btn navbtn mt-5 p-2 px-5" formnovalidate
+                            value="{{ wizard.steps.prev }}">
+                        <i class="bi bi-chevron-left"></i>Back
+                    </button>
+                </div>
+
+            {% endif %}
+
+
+
+            {#            <div class="col-12 d-flex justify-content-end">#}
+            {#                <button type="submit"  class="btn navbtn mt-5 p-2 px-5">#}
+            {#                    {% if wizard.steps.current == wizard.steps.last %} <i class="bi bi-chevron-right"></i>Next{% else %}#}
+            {#                        <i class="bi bi-chevron-right"></i>Next{% endif %}</button>#}
+            {#            </div>#}
+            <div class="col-12 d-flex justify-content-end">
+                <button type="submit" class="btn navbtn mt-5 p-2 px-5">
+                    <i class="bi bi-chevron-right"></i>Next
+                </button>
             </div>
-            {{ wizard.form.size.label_tag }} {{ wizard.form.size }}
-        {% elif wizard.steps.current == '1' %}
-            {% comment %} Second Step - notify me {% endcomment %}
-            {{ wizard.form.notifyMe.label_tag }} {{ wizard.form.notifyMe }}
-        {% endif %}
 
-        {% if wizard.steps.prev %}
-            {#            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">First Step</button>#}
-            <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">Back</button>
-        {% endif %}
-        <button type="submit">{% if wizard.steps.current == wizard.steps.last %}Next{% else %}Next{% endif %}</button>
-    </form>
+        </form>
+
+
+    </div>
 {% endblock %}
+
+
+{#{% extends "base_generic.html" %}#}
+{##}
+{#{% load static %}  <!-- Load the static tag library -->#}
+{##}
+{#{% block content %}#}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ wizard.management_form }}#}
+{##}
+{#        {% if wizard.steps.current == '0' %}#}
+{#            {% comment %} First Step - Individual's personal info {% endcomment %}#}
+{#            <div class="mb-3 ">#}
+{#                {{ wizard.form.firstName.label_tag }}#}
+{#            #}
+{#                {{ wizard.form.firstName }}#}
+{##}
+{#            </div>#}
+{#            {{ wizard.form.lastName.label_tag }} {{ wizard.form.lastName }}#}
+{##}
+{#            {{ wizard.form.description.label_tag }} {{ wizard.form.description }}#}
+{#            {{ wizard.form.telephone.label_tag }} {{ wizard.form.telephone }}#}
+{#            {{ wizard.form.mail.label_tag }} {{ wizard.form.mail }}#}
+{#            {{ wizard.form.gender.label_tag }}#}
+{#            <div class="form-check">#}
+{#                {% for gender_choice in wizard.form.gender %}#}
+{#                    <label class="form-check-label">#}
+{#                        {{ gender_choice.tag }} {{ gender_choice.choice_label }}#}
+{#                    </label>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            {{ wizard.form.size.label_tag }} {{ wizard.form.size }}#}
+{#        {% elif wizard.steps.current == '1' %}#}
+{#            {% comment %} Second Step - notify me {% endcomment %}#}
+{#            {{ wizard.form.notifyMe.label_tag }} {{ wizard.form.notifyMe }}#}
+{#        {% endif %}#}
+{##}
+{#        {% if wizard.steps.prev %}#}
+{##}
+{#            <button name="wizard_goto_step" type="submit" formnovalidate value="{{ wizard.steps.prev }}">Back</button>#}
+{#        {% endif %}#}
+{#        <button type="submit">{% if wizard.steps.current == wizard.steps.last %}Next{% else %}Next{% endif %}</button>#}
+{#    </form>#}
+{##}
+{##}
+{#{% endblock %}#}
+{##}
