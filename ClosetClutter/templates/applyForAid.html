@@ -4,6 +4,29 @@
 
 {% block content %}
 
+<style>
+    option{
+        color: #313144;
+        font-family: Comic Sans MS;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+        letter-spacing: 0.36px;
+    }
+
+    .form-select{
+       color: #313144;
+        font-family: Comic Sans MS;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+        letter-spacing: 0.36px;
+    }
+
+</style>
+
     <section class="mt-5">
         <div class="container ps-5">
             <h2 class="pt-5">ENROLL</h2>
@@ -12,28 +35,22 @@
 
                 <h6 class="d-inline pe-1">Are you enrolling individual or a family?</h6>
                 <form method="post" action="" id="myForm">
+
                     {% csrf_token %}
-                    {#                    <label for="selection">Select an option:</label>#}
-                    <select name="selection" id="selection" class="form-select w-25 mt-2 selectDropdown">
+                    {#  <label for="selection">Select an option:</label>  #}
+
+                    <select name="selection" id="selection" class="form-select w-25 mt-2 selectDropdown py-2">
                         <option value="individual">Individual</option>
                         <option value="family">Family</option>
                     </select>
-
                 </form>
-
-
             </div>
-
-
 
                 <div class="col-12 d-flex justify-content-end">
                     <button type="submit" id="submitBtn" class="btn navbtn mt-5 p-2 px-5">
-                        <i class="bi bi-chevron-right"></i>Next
+                        Next<i class="bi bi-chevron-right"></i>
                     </button>
                 </div>
-
-
-
         </div>
     </section>
     <script>
@@ -41,9 +58,5 @@
             document.getElementById('myForm').submit();
         });
     </script>
-
-
-
-
 
 {% endblock %}
